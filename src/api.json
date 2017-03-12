@@ -1,0 +1,34 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "ind-cmdb",
+    "description": "Indivisible Contact Management Database"
+  },
+  "host": "localhost:8000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
+    }
+  },
+  "security": [{
+      "basicAuth": []
+  }],
+  "paths": {
+  },
+  "definitions": {
+    "ErrorResponse": {
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "General error message"
+        }
+      },
+      "required": ["message"]
+    }
+  }
+}

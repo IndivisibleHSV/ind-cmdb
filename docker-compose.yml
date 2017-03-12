@@ -1,0 +1,46 @@
+---
+version: '2'
+services:
+  ind-cmdb:
+    image: indivisblehsv/ind-cmdb
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpassword
+      MYSQL_DATABASE: indivisblehsv
+    volumes:
+      - ./build/test:/usr/src/app/build/test
+    depends_on:
+      - mysql
+    networks:
+      - common
+    ports:
+      - 3000:3000
+
+  mysql:
+    image: mysql:5.7.10
+    environment:
+      MYSQL_ROOT_PASSWORD: thisisnotarealthing
+      MYSQL_DATABASE: indivisblehsv
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpassword
+    volumes:
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
+    networks:
+      - common
+
+  mysql_check:
+    image: mysql:5.7.10
+    command: mysql --batch --user testuser --password='testpassword' --host mysql indivisblehsv -e "select 1"
+    depends_on:
+      - mysql
+    networks:
+      - common
+    # We don't need the MySQL data volume, but if we don't mount it somewhere,
+    # we leak a volume and eventually run out of disk.
+    volumes:
+      - /tmp/mysql-check:/var/lib/mysql
+
+networks:
+  common:
+    driver: bridge

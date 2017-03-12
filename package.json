@@ -1,0 +1,52 @@
+{
+  "name": "ind-cmdb",
+  "version": "1.0.0",
+  "description": "Indivisible HSV Contact Management/Database",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "lint": "eslint .",
+    "add-user": "node scripts/addAuthUser.js",
+    "lint-ci": "eslint -f junit -o build/test/eslint.xml .",
+    "init-db": "node scripts/initializeDatabase.js",
+    "migrate": "knex migrate:latest",
+    "migrate-test": "NODE_ENV=test knex migrate:latest",
+    "test": "npm run lint && mocha",
+    "test-ci": "mocha -R xunit -O output=build/test/mocha.xml",
+    "ci-test": "npm run lint-ci && npm run test-ci",
+    "cover": "istanbul cover --report html _mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matt-jordan/ind-cmdb.git"
+  },
+  "author": "Matt Jordan",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/matt-jordan/ind-cmdb/issues"
+  },
+  "homepage": "https://github.com/matt-jordan/ind-cmdb#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "bookshelf": "^0.10.3",
+    "bunyan": "^1.8.8",
+    "bunyan-format": "^0.2.1",
+    "bunyan-middleware": "^0.6.0",
+    "config": "^1.25.1",
+    "eslint": "^3.14.1",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "express": "^4.15.2",
+    "joi": "^10.2.2",
+    "knex": "^0.12.6",
+    "lodash": "^4.17.4",
+    "mocha": "^3.2.0",
+    "mysql": "^2.13.0",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0",
+    "require-directory": "^2.1.1",
+    "supertest": "^3.0.0",
+    "swagger-tools": "^0.10.1",
+    "uuid": "^3.0.1"
+  }
+}

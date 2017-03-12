@@ -1,0 +1,7 @@
+node_modules/
+.git/
+build/
+config/local.js
+docker-compose*.yml
+Makefile
+README.md
