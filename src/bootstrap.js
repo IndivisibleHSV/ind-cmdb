@@ -1,12 +1,13 @@
 'use strict';
 const config = require('config');
+const cors = require('cors');
 const express = require('express');
 const swaggerTools = require('swagger-tools');
 const passport = require('passport');
-const BasicStrategy = require('passport-http').BasicStrategy;
+//const BasicStrategy = require('passport-http').BasicStrategy;
 const bunyanMiddleware = require('bunyan-middleware');
 const swaggerDefinition = require('./api.json'); // TODO: Replace with YAML, because YAML > JSON.
-const authVerify = require('./lib/middleware/authentication');
+//const authVerify = require('./lib/middleware/authentication');
 const log = require('./lib/log');
 
 function boot() {
@@ -15,6 +16,7 @@ function boot() {
 
         app.set('x-powered-by', false);
         app.set('trust proxy', true);
+        app.use(cors());
         app.use(bunyanMiddleware({
             logger: log,
             headerName: 'x-request-id',
@@ -30,10 +32,11 @@ function boot() {
             app.use(passport.initialize());
 
             // TODO: Replace with OAuth
+
             // configure basic auth
-            passport.use(new BasicStrategy(authVerify()));
+            //passport.use(new BasicStrategy(authVerify()));
             // exclude api-docs from auth check
-            app.use(/^(?!\/api-docs.*)/, (req, res, next) => {
+            /*app.use(/^(?!\/api-docs.*)/, (req, res, next) => {
                 passport.authenticate('basic', { session: false }, (err, user) => {
                     if (err || !user) {
                         // TODO: Replace Error with a more specific AuthError
@@ -46,6 +49,7 @@ function boot() {
                     next();
                 })(req, res, next);
             });
+            */
 
             // configure swagger
             app.use(middleware.swaggerMetadata());

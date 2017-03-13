@@ -10,15 +10,34 @@
   "schemes": ["http"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
-  "securityDefinitions": {
-    "basicAuth": {
-      "type": "basic"
-    }
-  },
-  "security": [{
-      "basicAuth": []
-  }],
   "paths": {
+    "/ping": {
+      "get": {
+        "tags": ["ping"],
+        "x-swagger-router-controller": "ping",
+        "operationId": "get",
+        "description": "Pings the service, performing a liveness check in the process.",
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "default": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
   },
   "definitions": {
     "ErrorResponse": {
