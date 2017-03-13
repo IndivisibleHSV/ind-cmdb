@@ -7,20 +7,20 @@ const config = require('config');
 const env = config.environment;
 const script = process.argv[1];
 const username = process.argv[2];
-const password = process.argv[3];
+const email = process.argv[3];
 
 /**
  * Ensures all required arguments are present.
  */
 function verifyArguments() {
     if (!username) {
-        log.error('usage: npm run add-user username password');
+        log.error('usage: npm run add-user username email');
         throw new Error('username is required');
     }
 
-    if (!password) {
-        log.error('usage: npm run add-user username password');
-        throw new Error('password is required');
+    if (!email) {
+        log.error('usage: npm run add-user username email');
+        throw new Error('email is required');
     }
 }
 
@@ -35,7 +35,7 @@ verifyArguments();
 // save the user
 User.forge({
     username,
-    password
+    email
 }).save().then(user => {
     log.info({ user }, 'Successfully created the user');
     process.exit(0);
