@@ -18,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matt-jordan/ind-cmdb.git"
+    "url": "git+https://github.com/IndivisibleHSV/ind-cmdb.git"
   },
   "author": "Matt Jordan",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/matt-jordan/ind-cmdb/issues"
+    "url": "https://github.com/IndivisibleHSV/ind-cmdb/issues"
   },
-  "homepage": "https://github.com/matt-jordan/ind-cmdb#readme",
+  "homepage": "https://github.com/IndivisibleHSV/ind-cmdb#readme.md",
   "dependencies": {
     "bookshelf": "^0.10.3",
     "bunyan": "^1.8.8",
